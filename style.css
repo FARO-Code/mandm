@@ -127,7 +127,7 @@ body:hover #cursor-follower {
 .heart-logo {
     width: 150px;
     height: 150px;
-    object-fit: cover;
+    object-fit: contain;
     margin-bottom: 20px;
     /* Heart Shape Mask */
     -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 88.9L16.7 55.6C7.2 46.1 7.2 30.9 16.7 21.4s24.7-9.5 33.3 0l0 0l0 0c8.6-9.5 23.8-9.5 33.3 0s9.5 24.7 0 34.2L50 88.9z" fill="black"/></svg>');
@@ -141,6 +141,73 @@ body:hover #cursor-follower {
 
     /* Animation */
     animation: heartBeat 2s infinite ease-in-out;
+}
+
+.top-bar-img {
+    width: calc(100% + 80px);
+    /* Compensate for parchment padding (40px * 2) */
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    margin: -40px -40px 30px -40px;
+    /* Pull into padding area */
+    border-radius: 3px 3px 0 0;
+    /* Fit inside parchment border radius */
+    display: block;
+}
+
+/* Background Heart Style */
+.heart-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    /* Larger size */
+    height: 350px;
+    object-fit: contain;
+    opacity: 0.5;
+    /* Transparent */
+    z-index: 1;
+    /* Behind text */
+    pointer-events: none;
+
+    /* Reuse Heart Mask */
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 88.9L16.7 55.6C7.2 46.1 7.2 30.9 16.7 21.4s24.7-9.5 33.3 0l0 0l0 0c8.6-9.5 23.8-9.5 33.3 0s9.5 24.7 0 34.2L50 88.9z" fill="black"/></svg>');
+    mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 88.9L16.7 55.6C7.2 46.1 7.2 30.9 16.7 21.4s24.7-9.5 33.3 0l0 0l0 0c8.6-9.5 23.8-9.5 33.3 0s9.5 24.7 0 34.2L50 88.9z" fill="black"/></svg>');
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+
+    animation: heartBeatSlow 4s infinite ease-in-out;
+}
+
+/* Ensure text stays on top */
+.parchment>*:not(.heart-bg) {
+    position: relative;
+    z-index: 2;
+}
+
+.heart-logo.tiny {
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes heartBeatSlow {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
 
 @keyframes heartBeat {

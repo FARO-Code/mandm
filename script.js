@@ -79,21 +79,28 @@ const themes = [
         drift: 0.2,
         rot: 0.0005
     },
-    {   // Para 1: Dawn/Celestial (Stars, Gold)
+    {   // Para 1: Twin Pillars (Soft Pink/Hearts)
+        color: 0xffaaaa,
+        map: textureHeart,
+        size: 0.2,
+        drift: 0.1,
+        rot: 0.0005
+    },
+    {   // Para 2: Moyo (Gold/Stars)
         color: 0xffd700,
         map: textureStar,
         size: 0.15,
         drift: 0.02,
         rot: 0.0002
     },
-    {   // Para 2: Clouds/Sky (White/Blue, Soft)
+    {   // Para 3: Mutma (Blue/Clouds)
         color: 0xe0ffff,
         map: textureCloud,
         size: 0.3,
         drift: -0.05,
         rot: 0.0001
     },
-    {   // Para 3: Memories (Warm Amber, Orbs)
+    {   // Para 4: Together (Warm Amber/Orbs)
         color: 0xffae42,
         map: textureOrb,
         size: 0.1,
