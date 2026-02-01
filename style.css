@@ -1,0 +1,365 @@
+:root {
+    --paper-color: #fdf6e3;
+    --ink-color: #2c0e0e;
+    /* Deep dark red/brown */
+    --accent-red: #8b0000;
+    --gold: #d4af37;
+    --font-handwriting: 'Dancing Script', cursive;
+    --font-serif: 'Playfair Display', serif;
+    --font-display: 'Cinzel Decorative', cursive;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    cursor: none;
+    /* Hide default cursor */
+}
+
+body {
+    background-color: #0d0202;
+    /* Very dark background */
+    color: var(--ink-color);
+    font-family: var(--font-serif);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /* We'll handle scroll manually or via container */
+}
+
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-size: 1rem;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 20px;
+    cursor: pointer;
+    /* Force pointer */
+    pointer-events: auto;
+}
+
+.music-btn:hover {
+    background: var(--gold);
+    color: var(--ink-color);
+    transform: scale(1.05);
+}
+
+/* Custom Cursor */
+#cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4af37"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
+    background-size: contain;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+}
+
+body:hover #cursor-follower {
+    opacity: 1;
+}
+
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+.page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    padding: 20px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.page.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.parchment {
+    max-width: 800px;
+    width: 90%;
+    background-color: var(--paper-color);
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 60px rgba(165, 122, 63, 0.2);
+    position: relative;
+    background-image: url("assets/aged-paper.png");
+    /* Simple texture */
+    text-align: center;
+    border: 2px solid transparent;
+    border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+    border-image-slice: 1;
+    border-width: 2px;
+    border-style: solid;
+    /* Simulate old letter look */
+}
+
+/* Specific Page Styles */
+.heart-logo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    /* Heart Shape Mask */
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 88.9L16.7 55.6C7.2 46.1 7.2 30.9 16.7 21.4s24.7-9.5 33.3 0l0 0l0 0c8.6-9.5 23.8-9.5 33.3 0s9.5 24.7 0 34.2L50 88.9z" fill="black"/></svg>');
+    mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 88.9L16.7 55.6C7.2 46.1 7.2 30.9 16.7 21.4s24.7-9.5 33.3 0l0 0l0 0c8.6-9.5 23.8-9.5 33.3 0s9.5 24.7 0 34.2L50 88.9z" fill="black"/></svg>');
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+
+    /* Animation */
+    animation: heartBeat 2s infinite ease-in-out;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+
+    14% {
+        transform: scale(1.1);
+    }
+
+    28% {
+        transform: scale(1);
+    }
+
+    42% {
+        transform: scale(1.1);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+}
+
+.intro-page h1 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--accent-red);
+    margin-bottom: 20px;
+}
+
+.intro-page p {
+    font-family: var(--font-handwriting);
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.romantic-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: justify;
+    text-indent: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.final-text {
+    margin-bottom: 30px;
+}
+
+.big-question {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent-red);
+    margin: 30px 0;
+}
+
+.final-question {
+    font-family: var(--font-handwriting);
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    position: relative;
+    height: 60px;
+    /* Space for buttons */
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-family: var(--font-display);
+    border: none;
+    background: var(--ink-color);
+    color: var(--gold);
+    cursor: none;
+    /* We use custom cursor */
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: var(--accent-red);
+    color: white;
+}
+
+#no-btn {
+    position: absolute;
+    /* Initial position logic handled by CSS layout, but JS will move it */
+}
+
+.scroll-indicator {
+    margin-top: 30px;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.5s;
+}
+
+.delay-2 {
+    animation-delay: 1.5s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+#celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+#celebration-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#celebration-overlay h1 {
+    font-family: var(--font-display);
+    color: var(--accent-red);
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+#celebration-overlay p {
+    font-family: var(--font-handwriting);
+    color: white;
+    font-size: 2.5rem;
+}
+
+/* Touch devices */
+@media (pointer: coarse) {
+    * {
+        cursor: auto !important;
+    }
+
+    #cursor-follower {
+        display: none;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .parchment {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .intro-page h1 {
+        font-size: 2rem;
+    }
+
+    .intro-page p {
+        font-size: 1.5rem;
+    }
+
+    .romantic-text {
+        font-size: 1rem;
+    }
+
+    .big-question {
+        font-size: 1.5rem;
+    }
+
+    .buttons-container {
+        gap: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+    }
+}

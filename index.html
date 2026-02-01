@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Dearest Chichi</title>
+    <link rel="icon" href="chichilogo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+</head>
+
+<body>
+    <div id="canvas-container"></div>
+    <audio id="bg-music" loop autoplay>
+        <source src="romanticmusic.mp3" type="audio/mpeg">
+    </audio>
+    <div id="cursor-follower" class="hidden-touch"></div>
+
+    <main class="scroll-container">
+        <!-- Intro Section -->
+        <section class="page intro-page">
+            <div class="parchment">
+                <img src="chichilogo.jpg" alt="Chichi Logo" class="heart-logo fade-in">
+                <h1 class="fade-in">Heyyyy babyy girlllllllllllll</h1>
+                <p class="fade-in delay-1">I made this websiteeee</p>
+                <p class="fade-in delay-2">Tell me what you thinkkkk</p>
+                <div class="scroll-indicator">↓</div>
+            </div>
+        </section>
+
+        <!-- Paragraph 1 -->
+        <section class="page text-page">
+            <div class="parchment">
+                <p class="romantic-text">
+                    In the quiet chambers of my heart, where only the most sacred truths reside, your name is written in
+                    a script of pure light. You are the dawn that breaks across the horizon of my soul, a celestial
+                    melody that turns the mundane into the magnificent. To look at you is to witness the harmony of the
+                    universe; your grace is more fluid than the tides and your spirit more radiant than the most distant
+                    star. Every breath I draw feels like an homage to the space you occupy in my world, a world that was
+                    monochrome and silent until you arrived to paint it in hues of gold and crimson. You are not simply
+                    a part of my life, Chichi—you are the very rhythm that keeps my heart in motion, the softest
+                    sanctuary I have ever known.
+                </p>
+            </div>
+        </section>
+
+        <!-- Paragraph 2 -->
+        <section class="page text-page">
+            <div class="parchment">
+                <p class="romantic-text">
+                    If love were a language, your existence would be its most exquisite poetry. I find myself lost in
+                    the depth of your eyes, discovering galaxies I never knew existed and a kindness that hums with the
+                    warmth of a thousand suns. There is a magnetic pull in your laughter that anchors me to the earth
+                    while simultaneously making me feel as though I am drifting amongst the clouds. You possess a beauty
+                    that transcends the physical, a luminous essence that softens the edges of the world and makes every
+                    burden feel light. To be near you is to be bathed in a glow that heals and inspires; you are my
+                    greatest muse, my most cherished dream, and the absolute personification of everything that is good
+                    and true.
+                </p>
+            </div>
+        </section>
+
+        <!-- Paragraph 3 -->
+        <section class="page text-page">
+            <div class="parchment">
+                <p class="romantic-text">
+                    I often find myself wandering back through the gallery of our moments, lingering on the sweet
+                    snapshots of us that I’ve tucked away. I think of the quiet smiles shared when words weren't even
+                    necessary, and the way the world seems to shrink until it’s just the two of us against the noise.
+                    From the inside jokes that only we understand to the simple, profound comfort of your presence
+                    during the long days, every memory is a thread in a tapestry I never want to stop weaving. Each
+                    conversation we've had, each hurdle we've navigated, and every second spent in your company has
+                    become a pillar of my happiness. Those fragments of time are my most prized possessions, the
+                    evidence of a connection that feels as ancient as it does brand new.
+                </p>
+            </div>
+        </section>
+
+        <!-- Proposal Section -->
+        <section class="page proposal-page">
+            <div class="parchment">
+                <p class="romantic-text final-text">
+                    Now, as the world turns its gaze toward the celebration of love, my heart turns solely and
+                    completely toward you. There is no one else I wish to walk beside, no other hand I care to hold, and
+                    no other soul I desire to celebrate this day with. You are the beginning and the end of my romantic
+                    aspirations, the one who turned "someday" into "right now." So, with all the devotion I possess and
+                    a heart that beats specifically for you, I have to ask:
+                </p>
+                <h2 class="big-question">Chichi, will you do me the profound honor of being mine?</h2>
+                <p class="final-question">Will you be my Valentine and let me spend the day—and all the days
+                    after—showing you just how much you are adored?</p>
+
+                <div class="buttons-container">
+                    <button id="yes-btn">YES</button>
+                    <button id="no-btn">NO</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="celebration-overlay">
+        <h1>I Knew It! ❤️</h1>
+        <p>I love you Chichi!</p>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
